@@ -15,6 +15,12 @@ import CustomerDashboard from './pages/customer/CustomerDashboard';
 import BusinessSetup from './pages/business/BusinessSetup';
 import BusinessPublic from './pages/business/BusinessPublic';
 import ServiceManagement from './pages/business/ServiceManagement';
+import BookingPage from './pages/booking/BookingPage';
+import Calendar from './pages/dashboard/Calendar';
+import StaffManagement from './pages/dashboard/StaffManagement';
+import Analytics from './pages/dashboard/Analytics';
+import Settings from './pages/dashboard/Settings';
+import Profile from './pages/dashboard/Profile';
 
 /**
  * Smart dashboard redirect based on user role.
@@ -38,6 +44,7 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/business/:id" element={<BusinessPublic />} />
+        <Route path="/book/:businessId/:serviceId" element={<BookingPage />} />
       </Route>
 
       {/* Dashboard Pages (with navbar + sidebar) */}
@@ -66,17 +73,27 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        {/* Placeholder routes for future pages */}
         <Route
           path="/dashboard/calendar"
           element={
             <ProtectedRoute roles={['owner']}>
-              <div className="page-container">
-                <h1 className="text-3xl font-bold text-white mb-4">Calendar</h1>
-                <div className="glass-card p-12 text-center">
-                  <p className="text-surface-400">Calendar view coming in Week 2!</p>
-                </div>
-              </div>
+              <Calendar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/staff"
+          element={
+            <ProtectedRoute roles={['owner']}>
+              <StaffManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/analytics"
+          element={
+            <ProtectedRoute roles={['owner']}>
+              <Analytics />
             </ProtectedRoute>
           }
         />
@@ -84,12 +101,7 @@ const App = () => {
           path="/dashboard/settings"
           element={
             <ProtectedRoute>
-              <div className="page-container">
-                <h1 className="text-3xl font-bold text-white mb-4">Settings</h1>
-                <div className="glass-card p-12 text-center">
-                  <p className="text-surface-400">Settings page coming soon!</p>
-                </div>
-              </div>
+              <Settings />
             </ProtectedRoute>
           }
         />
@@ -97,12 +109,7 @@ const App = () => {
           path="/dashboard/profile"
           element={
             <ProtectedRoute>
-              <div className="page-container">
-                <h1 className="text-3xl font-bold text-white mb-4">Profile</h1>
-                <div className="glass-card p-12 text-center">
-                  <p className="text-surface-400">Profile page coming soon!</p>
-                </div>
-              </div>
+              <Profile />
             </ProtectedRoute>
           }
         />

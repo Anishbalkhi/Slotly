@@ -13,6 +13,10 @@ const authRoutes = require('./routes/authRoutes');
 const businessRoutes = require('./routes/businessRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const userRoutes = require('./routes/userRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
+const staffRoutes = require('./routes/staffRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 
@@ -57,6 +61,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/businesses', businessRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api', appointmentRoutes);  // mounts /api/availability
+app.use('/api/staff', staffRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // ── Error Handling ──────────────────────────────────────────────────
 app.use(notFound);
@@ -82,6 +91,10 @@ const startServer = async () => {
 // Only start server if not in test mode
 if (process.env.NODE_ENV !== 'test') {
   startServer();
+
+  // Start reminder cron job
+  const { startReminderJob } = require('./jobs/reminderJob');
+  startReminderJob();
 }
 
 module.exports = app;

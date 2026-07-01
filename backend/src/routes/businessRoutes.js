@@ -9,6 +9,8 @@ const {
   businessValidation,
 } = require('../controllers/businessController');
 const { createService, getServices, serviceValidation } = require('../controllers/serviceController');
+const { createStaff, getStaffByBusiness, staffValidation } = require('../controllers/staffController');
+const { getBusinessReviews } = require('../controllers/reviewController');
 const { protect, authorize } = require('../middleware/auth');
 const validate = require('../middleware/validate');
 
@@ -29,5 +31,12 @@ router.delete('/:id', protect, authorize('owner'), deleteBusiness);
 // ── Services (nested under business) ────────────────────────────────
 router.get('/:id/services', getServices);
 router.post('/:id/services', protect, authorize('owner'), serviceValidation, validate, createService);
+
+// ── Staff (nested under business) ───────────────────────────────────
+router.get('/:id/staff', getStaffByBusiness);
+router.post('/:id/staff', protect, authorize('owner'), staffValidation, validate, createStaff);
+
+// ── Reviews (nested under business) ─────────────────────────────────
+router.get('/:id/reviews', getBusinessReviews);
 
 module.exports = router;

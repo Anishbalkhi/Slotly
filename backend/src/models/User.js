@@ -47,8 +47,8 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Index for email lookups
-userSchema.index({ email: 1 });
+
+
 
 /**
  * Pre-save hook: hash password if modified.

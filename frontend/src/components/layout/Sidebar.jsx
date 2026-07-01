@@ -8,6 +8,8 @@ import {
   HiOutlineCog,
   HiOutlineSearch,
   HiOutlineUser,
+  HiOutlineUserGroup,
+  HiOutlineChartBar,
 } from 'react-icons/hi';
 
 const Sidebar = () => {
@@ -17,6 +19,8 @@ const Sidebar = () => {
     { to: '/dashboard', icon: HiOutlineViewGrid, label: 'Dashboard' },
     { to: '/dashboard/calendar', icon: HiOutlineCalendar, label: 'Calendar' },
     { to: '/dashboard/services', icon: HiOutlineClipboardList, label: 'Services' },
+    { to: '/dashboard/staff', icon: HiOutlineUserGroup, label: 'Staff' },
+    { to: '/dashboard/analytics', icon: HiOutlineChartBar, label: 'Analytics' },
     { to: '/dashboard/business', icon: HiOutlineBriefcase, label: 'Business' },
     { to: '/dashboard/settings', icon: HiOutlineCog, label: 'Settings' },
   ];
